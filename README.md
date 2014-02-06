@@ -27,4 +27,23 @@ Add the following code at the very bottom
 
 And off you go! Anything between <!-- start ajax --> and <!-- end ajax --> will be given as response. Please note that the default destination for the ajaxed content is any element given the #container ID.
 
+
+# Add other jQuery plugins.
+
+Other jQuery plugins can be called in the page with use of the following code in the desired div instead of adding script tags on the bottom of the page to bind it to certain classes or ID's.
+
+> data-plugin="pluginfunction"
+
+## Parameters
+
+This new feature allows you to edit variables with a defined value as a parameter.
+
+> data-variabletoedit="value"
+
+## Example
+
+So this could be all the code you need to include jQuery plugins.
+<div data-plugin="slider" data-speed="500"></div>
+
+
 ##### Made by Remy Martin Lagerweij - http://behance.net/remylagerweij - http://github.com/remylagerweij
