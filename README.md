@@ -43,7 +43,7 @@ This new feature allows you to edit variables with a defined value as a paramete
 ## Example
 
 So this could be all the code to add in a DIV or any other HTML Element to include jQuery plugins.
-> div data-plugin="slider" data-speed="500"
+> div data-plugin="sliderjs" data-speed="500"
 
 
 ##### Made by Remy Martin Lagerweij - http://behance.net/remylagerweij - http://github.com/remylagerweij
