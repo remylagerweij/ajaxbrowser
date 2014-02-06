@@ -17,6 +17,14 @@ $(function()
     // Open the external link in new window
     $('a:external').attr({"target" : "_blank"})
 
+    // Plugin Loader
+    var pluginloader = function(){
+		$( "#container [data-plugin]" ).each(function(i,el){
+			$el = $(el);
+			$el[ $el.data().plugin ]($el.data());
+		});
+	}
+
     // AJAX Function called to VAR
 	var loadPage = function(event, page, push) {
 		event.preventDefault();
@@ -31,18 +39,18 @@ $(function()
 		.done(function( html ) 
 		{
 			$( "#container" ).slideUp(function()
-			
-{				$( "#container" ).html( html );
-				$( "#container" ).slideDown();
-
+			{
+				$( "#container" ).html( html );
+				$( "#container" ).slideDown(pluginloader);	
 			});
 		 });
 		if (push) {
 				window.history.pushState({page: page}, "/Title", page);
 		}
+		$('script').remove()
 	};
 
-	// Execute ajax when internal link clicked
+	// Execute ajax whenever internal link clicked
 	$('a:internal').click(function(event)
 	{
 		loadPage(event, $(this).attr('href'), true);
@@ -54,4 +62,5 @@ $(function()
 	    	loadPage(event, event.state.page, false);
 	    }
     };
+   pluginloader()
 });
