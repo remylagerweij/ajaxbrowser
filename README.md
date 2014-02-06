@@ -10,7 +10,7 @@ A simple yet powerful jQuery/Ajax plugin to browse your website in with fancy an
 
 ## Step 1
 
-Include jQuery library and the InHouse Ajax plugin in your header:
+Include jQuery library and the AJAX Browser plugin in your header:
 
 ## Step 2
 
