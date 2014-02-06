@@ -3,9 +3,9 @@ AJAX Browser
 A simple yet powerful jQuery/Ajax plugin to browse your website in with fancy animations. You can make use of it by following the 4 easy steps below and/or check out the demo in the demo map.
 
 ## Features: 
-- Internal links load the page with AJAX.
+- Internal links load the page with AJAX and and a sweet animation
 - External links open in new window
-- Back/Forward buttons in the browser are supported, both animated and saved into your history
+- Back/Forward buttons in the browser are AJAX supported, animated and saved into your history
 - Adress bar gets filled with opened link
 
 ## Step 1
