@@ -45,5 +45,22 @@ This new feature allows you to edit variables with a defined value as a paramete
 So this could be all the code to add in a DIV or any other HTML Element to include jQuery plugins.
 > div data-plugin="sliderjs" data-speed="500"
 
+# Internal and External Links
+
+AJAX Browser no longer just checks for 'http://' in the href for external link identification but actually checks if link destination is within it's own domain.
+
+Functionality regarding internal or internal can be used as:
+
+> :internal
+
+or
+
+> :external
+
+## Example
+
+> $('a:internal').click(function(event){
+dosomething
+});
 
 ##### Made by Remy Martin Lagerweij - http://behance.net/remylagerweij - http://github.com/remylagerweij
