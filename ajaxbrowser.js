@@ -2,12 +2,22 @@ $(function()
 {
 	// Set the current page adress
 	window.history.replaceState({page: ''}, "/Title", '');
-	
+
+   function get_hostname(url) {
+    var m = url.match(/^http:\/\/[^/]+/);
+    return m ? m[0] : null;
+	}
+
+	var domain = get_hostname(window.location.href);
+
 	// Is link external? make use with: $('a:external')
 	$.expr[':'].external = function (a) {
-        var PATTERN_FOR_EXTERNAL_URLS = /^\w+:\/\//;
+        var ext_url = /^\w+:\/\//;
         var href = $(a).attr('href');
-        return href !== undefined && href.search(PATTERN_FOR_EXTERNAL_URLS) !== -1;
+        if(domain !== null && href.substring(0, domain.length) == domain) {
+        	return false;
+        }
+        return href !== undefined && href.search(ext_url) !== -1;
     };
     // Is link internal? make use with: $('a:internal')
     $.expr[':'].internal = function (a) {
@@ -16,8 +26,8 @@ $(function()
 
     // Open the external link in new window
     $('a:external').attr({"target" : "_blank"})
-
-    // Plugin Loader
+	
+	// Plugin Loader
     var pluginloader = function(){
 		$( "#container [data-plugin]" ).each(function(i,el){
 			$el = $(el);

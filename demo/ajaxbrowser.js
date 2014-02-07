@@ -2,12 +2,22 @@ $(function()
 {
 	// Set the current page adress
 	window.history.replaceState({page: ''}, "/Title", '');
-	
+
+   function get_hostname(url) {
+    var m = url.match(/^http:\/\/[^/]+/);
+    return m ? m[0] : null;
+	}
+
+	var domain = get_hostname(window.location.href);
+
 	// Is link external? make use with: $('a:external')
 	$.expr[':'].external = function (a) {
-        var PATTERN_FOR_EXTERNAL_URLS = /^\w+:\/\//;
+        var ext_url = /^\w+:\/\//;
         var href = $(a).attr('href');
-        return href !== undefined && href.search(PATTERN_FOR_EXTERNAL_URLS) !== -1;
+        if(domain !== null && href.substring(0, domain.length) == domain) {
+        	return false;
+        }
+        return href !== undefined && href.search(ext_url) !== -1;
     };
     // Is link internal? make use with: $('a:internal')
     $.expr[':'].internal = function (a) {
@@ -16,6 +26,14 @@ $(function()
 
     // Open the external link in new window
     $('a:external').attr({"target" : "_blank"})
+	
+	// Plugin Loader
+    var pluginloader = function(){
+		$( "#container [data-plugin]" ).each(function(i,el){
+			$el = $(el);
+			$el[ $el.data().plugin ]($el.data());
+		});
+	}
 
     // AJAX Function called to VAR
 	var loadPage = function(event, page, push) {
@@ -31,18 +49,18 @@ $(function()
 		.done(function( html ) 
 		{
 			$( "#container" ).slideUp(function()
-			
-{				$( "#container" ).html( html );
-				$( "#container" ).slideDown();
-
+			{
+				$( "#container" ).html( html );
+				$( "#container" ).slideDown(pluginloader);	
 			});
 		 });
 		if (push) {
 				window.history.pushState({page: page}, "/Title", page);
 		}
+		$('script').remove()
 	};
 
-	// Execute ajax when internal link clicked
+	// Execute ajax whenever internal link clicked
 	$('a:internal').click(function(event)
 	{
 		loadPage(event, $(this).attr('href'), true);
@@ -54,4 +72,5 @@ $(function()
 	    	loadPage(event, event.state.page, false);
 	    }
     };
+   pluginloader()
 });
