@@ -51,20 +51,22 @@ $(function()
 			$( "#container" ).slideUp(function()
 			{
 				$( "#container" ).html( html );
-				$( "#container" ).slideDown(pluginloader);	
+				$( "#container" ).slideDown(pluginloader);
+
 			});
 		 });
 		if (push) {
 				window.history.pushState({page: page}, "/Title", page);
 		}
-		$('script').remove()
+
 	};
 
 	// Execute ajax whenever internal link clicked
-	$('a:internal').click(function(event)
+	$( document ).on( "click", "a:internal", function(event) 
 	{
-		loadPage(event, $(this).attr('href'), true);
-    });
+  			loadPage(event, $(this).attr('href'), true);
+		});
+
 
 	// Execute ajax when navigating through back/forward buttons
     window.onpopstate = function(event) {
