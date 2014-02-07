@@ -8,22 +8,22 @@ A simple yet powerful jQuery/Ajax plugin to browse your website in with fancy an
 - Back/Forward buttons in the browser are AJAX supported, animated and saved into your history
 - Adress bar gets filled with opened link
 
-## Step 1
+### Step 1
 
 Include jQuery library and the AJAX Browser plugin in your header:
 
-## Step 2
+### Step 2
 
 Add the following code at the very top of any page you would like to AJAX.
 > <?php ob_start(); ?>
 
-## Step 3
+### Step 3
 
 Add the following code at the very bottom
 
 > <?php if( !empty($SERVER['HTTPX_REQUESTED_WITH']) && strtolower($SERVER['HTTPX_REQUESTED_WITH']) == 'xmlhttprequest' ) { $html = ob_get_clean(); echo preg_replace("/^.+". preg_quote("<!-- start ajax -->") . "(.+)". preg_quote("<!-- end ajax -->") >.".+$/is","$1", $html); } ?>
 
-## Step 4
+### Step 4
 
 And off you go! Anything between <!-- start ajax --> and <!-- end ajax --> will be given as response. Please note that the default destination for the ajaxed content is any element given the #container ID.
 
